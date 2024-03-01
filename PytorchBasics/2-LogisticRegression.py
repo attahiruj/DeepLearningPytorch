@@ -52,7 +52,7 @@ for epoch in range(n_epoch):
     optimizer.step()
     optimizer.zero_grad()
     if(epoch + 1) % 100 == 0:
-            print(f'| Epoch: {epoch+1}\t| Loss:{loss.item():.4f} |')
+        print(f'| Epoch: {epoch+1}\t| Loss:{loss.item():.4f} |')
 print(f'{"="*30}\n')
 
 # 5. Test
