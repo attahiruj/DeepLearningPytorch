@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import torchvision
+# import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 from torchvision.datasets import CIFAR10
@@ -47,7 +47,7 @@ classes = (	'plane', 'car', 'bird', 'cat',
 			'deer', 'dog', 'frog', 'horse',
 			'ship', 'truck')
 
-
+print(train_data[1])
 # ConvNet
 class ConvNet(nn.Module):
 	def __init__(self):
