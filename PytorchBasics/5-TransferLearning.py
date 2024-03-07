@@ -41,7 +41,7 @@ dataloaders = {x: DataLoader(image_datasets[x], batch_size=4, shuffle=True, num_
 
 dataset_size = {x: len(image_datasets[x]) for x in ['train', 'val']}
 class_names = image_datasets['train'].classes
-print(f' Data set class names: {class_names}')
+print(f'\nData set class names: {class_names}')
 print(f'\n{"="*50}\n')
 # define training model
 def train_model(model, criterion, optimizer, scheduler, n_epochs=25):
