@@ -1,3 +1,4 @@
+from msilib.schema import File
 import os
 import time
 import copy
@@ -40,6 +41,7 @@ dataloaders = {x: DataLoader(image_datasets[x], batch_size=4, shuffle=True, num_
 					for x in ['train', 'val']}
 
 dataset_size = {x: len(image_datasets[x]) for x in ['train', 'val']}
+
 class_names = image_datasets['train'].classes
 print(f'\nData set class names: {class_names}')
 print(f'\n{"="*50}\n')
@@ -107,12 +109,13 @@ def train_model(model, criterion, optimizer, scheduler, n_epochs=25):
 # loading a pre-trained ResNet-18 model
 # from the torchvision library with pre-trained weights.
 model = models.resnet18()
+summary(model)
 for param in model.parameters():
     param.requires_grad = False
 
 n_features = model.fc.in_features
 n_classes = 2
-n_epoch = 2
+n_epoch = 1
 
 model.fc = nn.Linear(n_features, n_classes)
 model.to(device)
@@ -120,4 +123,8 @@ criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.001)
 step_lr_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.1)
 
-model = train_model(model, criterion, optimizer, step_lr_scheduler, n_epoch)
+bee_ant_model = train_model(model, criterion, optimizer, step_lr_scheduler, n_epoch)
+
+#save model
+FILE = "PytorchBasics/models/BeeAntClassifierModel.pth"
+torch.save(bee_ant_model.state_dict(), FILE)
