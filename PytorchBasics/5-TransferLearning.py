@@ -1,4 +1,3 @@
-from msilib.schema import File
 import os
 import time
 import copy
